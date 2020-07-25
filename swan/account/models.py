@@ -9,7 +9,7 @@ class Profile (models.Model):
     phone = models.CharField(max_length=12)
     dob = models.DateField(auto_now=False, auto_now_add=False)
     address = models.CharField(max_length=200)
-    order = models.OneToOneField('Order', on_delete=models.CASCADE)
+    order = models.OneToOneField('Order', on_delete=models.CASCADE, related_name='profile')
 
 # class Address (models.Model):
 #     # country = ChoiceField
@@ -20,7 +20,7 @@ class Profile (models.Model):
 class User (models.Model):
     username = models.CharField(max_length=30)
     password = models.CharField(max_length=30)
-    profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
+    profile = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='user')
     # social authentication
 
 
@@ -43,7 +43,7 @@ class Delivery (models.Model):
 class Stock (models.Model):
     availability = models.BooleanField()
     quantity = models.IntegerField()
-    product = models.OneToOneField(Product, on_delete=models.CASCADE)
+    product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name='stocks')
 
 class Service (models.Model):
     warranty_type = models.CharField (max_length=50, choices=WARRANTY_CHOICES)
@@ -52,20 +52,20 @@ class Service (models.Model):
 
 class Order (models.Model):
     order_date = models.DateField(auto_now_add=True)
-    product = models.ForeignKey('Product', on_delete=models.CASCADE)
-    delivery = models.OneToOneField('Delivery', on_delete=models.CASCADE)
+    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='orders')
+    delivery = models.OneToOneField('Delivery', on_delete=models.CASCADE, related_name='order')
     order_status = models.CharField (max_length=50, choices=ORDER_STATUS_CHOICES)
 
 class Review (models.Model):
     description = models.TextField(max_length=200)
     star = models.CharField (max_length=50, choices=STAR_CHOICES)
-    product = models.ForeignKey('Product', on_delete=models.CASCADE)
+    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='reviews')
 
 class Cart (models.Model):
     numberofitem = models.IntegerField()
-    product = models.ForeignKey('Product', on_delete=models.CASCADE)
+    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='carts')
     subtotal = models.FloatField()
-    delivery = models.OneToOneField('Delivery', on_delete=models.CASCADE)
+    delivery = models.OneToOneField('Delivery', on_delete=models.CASCADE, related_name='cart')
     total_cost = models.FloatField()
 
 
