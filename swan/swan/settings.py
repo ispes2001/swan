@@ -11,10 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import environ
+# import environ
 from dotenv import load_dotenv
-
-
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -99,17 +97,28 @@ WSGI_APPLICATION = 'swan.wsgi.application'
 #         'PORT': '',
 #     }
 # }
-print(os.environ)
-print (os.environ['PASSWORD'])
+# print(os.environ)
+# print (os.environ['PASSWORD'])
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': os.environ['NAME'],
+    #     'USER': os.environ['USER'],
+    #     'PASSWORD': os.environ['PASSWORD'],
+    #     # 'HOST': environ.Env.read_env("HOST"),
+    #     # 'PORT': environ.Env.read_env("PORT"),
+    # }
+
+
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ['NAME'],
-        'USER': os.environ['USER'],
+        'NAME': os.environ['DB_NAME'],
+        'USER': os.environ['DB_USER'],
         'PASSWORD': os.environ['PASSWORD'],
-        # 'HOST': environ.Env.read_env("HOST"),
-        # 'PORT': environ.Env.read_env("PORT"),
-    }
+        'HOST': os.environ['HOST'],
+        # 'PORT': os.environ['DB_PORT'],
+    },
+
 }
 
 # Password validation
@@ -155,6 +164,6 @@ STATICFILES_DIRS = [
 
 
 GRAPH_MODELS = {
-  'all_applications': True,
-  'group_models': True,
+    'all_applications': True,
+    'group_models': True,
 }
