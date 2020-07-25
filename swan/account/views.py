@@ -6,3 +6,7 @@ from django.http import HttpResponse
 def index(request):
     template = loader.get_template('base.html')
     return HttpResponse (template.render({}, request))
+
+def administrator(request):
+    template = loader.get_template('base_admin.html')
+    return HttpResponse (template.render({}, request))
