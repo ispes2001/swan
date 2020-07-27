@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-# import environ
+import environ
 from dotenv import load_dotenv
 
 
@@ -29,6 +29,8 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 # # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'b^n7h(&n@x5vo*975p(5ru5p5uarh*=fz&o&ddu#l-xgj(fj&1'
+
+# SECRET_KEY = os.getenv('S_KEY')
 
 # SECRET_KEY = environ.Env.read_env("SECRET_KEY")
 
@@ -92,7 +94,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'swan',
         'USER': 'postgres',
-        'PASSWORD': 'popular123',
+        'PASSWORD' : 'popular123',
         'HOST': 'localhost',
         'PORT': '',
     }
