@@ -13,7 +13,10 @@ class Category(models.Model):
         return self.name
     
 class Product(models.Model):
+<<<<<<< HEAD
     # categorcay_name = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE,null=True)
+=======
+>>>>>>> 8adbf431023fea39910e0b3bebfaddbbb3658001
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE,null=True)
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True)

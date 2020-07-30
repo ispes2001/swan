@@ -6,7 +6,7 @@
 
     <div class="form-group">
       <label for="exampleFormControlInput1">Category Name</label>
-      <select name="category_name" class="form-control">
+      <select name="category" class="form-control">
         {% for c in categories %}
         <option value="{{c.id}}">{{c.name}}</option>
         {% endfor %}
@@ -31,7 +31,7 @@
     </div>
     <!-- Default checked -->
     <div class="custom-control custom-switch">
-      <input type="checkbox" class="custom-control-input" id="customSwitch1" name="available" {% if checked%} True {%else%} False {%endif%}>
+      <input type="checkbox" class="custom-control-input" id="customSwitch1" name="available" checked>
       <label class="custom-control-label" for="customSwitch1">Availability</label>
     </div>
     <div>
