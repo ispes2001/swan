@@ -1,0 +1,39 @@
+{% extends 'base_admin.html' %}
+
+{% block content %}
+
+<div class='container-fluid'>
+<table class="table table-bordered table-dark">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Category</th>
+        <th scope="col">Name</th>
+        <th scope="col">Slug</th>
+        <!-- <th scope="col">Image</th> -->
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Created</th>
+        <th scope="col">Updated</th>
+      </tr>
+    </thead>
+    {% for i in product %}
+    <tbody>
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.category_name.name}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.slug}}</td>
+        <td>{{i.image}}</td>
+        <td>{{i.description}}</td>
+        <td>{{i.price}}</td>
+        <td>{{i.created}}</td>
+        <td>{{i.updated}}</td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+  <a href='{% url "add_product"%}' type = 'button' class="btn btn-primary" id="menu-toggle">Add Product </a>
+</div>
+
+{% endblock %}

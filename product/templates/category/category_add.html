@@ -1,0 +1,60 @@
+{% extends 'base_admin.html' %}
+
+{% block content %}
+<div class="mt-4 ml-4 mr-4">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="card">
+            <div class="card-header">
+                Add new Procucts
+            </div>
+            <div class="card-body">
+
+
+                <!-- <div class="row">
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {{msg}}
+                </div> -->
+<!-- 
+
+                <div class="row">
+                    <div class="alert alert-danger" role="alert">
+                        {{ msg }}
+                    </div>
+                </div> -->
+
+                <div class="col-md-6">
+                    <label class="label-control">Enter Product Name</label>
+                    <input type="text" class="form-control" name="name" />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="label-control">Enter Product Slug</label>
+                    <input type="text" class="form-control" name="slug" />
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="card-footer">
+            <input type="submit" class="btn btn-outline-info ml-4" value="submit">
+
+        </div>
+</div>
+
+</form>
+
+
+
+
+
+</div>
+
+{% endblock %}
