@@ -90,39 +90,29 @@ WSGI_APPLICATION = 'swan.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'swan_new',
+#         'USER': 'postgres',
+#         'PASSWORD' : 'popular123',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
+# print(os.environ)
+# print (os.environ['PASSWORD'])
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'swan_new',
-        'USER': 'postgres',
-        'PASSWORD' : 'popular123',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
+        'NAME': os.environ['DB_NAME'],
+        'USER': os.environ['DB_USER'],
+        'PASSWORD': os.environ['PASSWORD'],
+        'HOST': os.environ['HOST'],
+        # 'PORT': os.environ['DB_PORT'],
+    },
+
 }
-# print(os.environ)
-# print (os.environ['PASSWORD'])
-# DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': os.environ['NAME'],
-    #     'USER': os.environ['USER'],
-    #     'PASSWORD': os.environ['PASSWORD'],
-    #     # 'HOST': environ.Env.read_env("HOST"),
-    #     # 'PORT': environ.Env.read_env("PORT"),
-    # }
-
-
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': os.environ['DB_NAME'],
-#         'USER': os.environ['DB_USER'],
-#         'PASSWORD': os.environ['PASSWORD'],
-#         'HOST': os.environ['HOST'],
-#         # 'PORT': os.environ['DB_PORT'],
-#     },
-
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
