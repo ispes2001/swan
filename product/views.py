@@ -30,6 +30,7 @@ def category_add(request):
             return HttpResponse (template.render(context, request))
         # obj = Category.objects.create(name = name, slug = slug)
         return HttpResponseRedirect (reverse('category'))
+    
     return HttpResponse (template.render({}, request))
 
 def product(request):
@@ -41,16 +42,28 @@ def add_product(request):
     template = loader.get_template('product/add_product.html')
     if request.method == "POST":
         data = request.POST
-        # print (data)
-        category = data ['name']
+        category_id = data ['category_name']
         name = data ['name']
         slug = data ['slug']
         # image = data ['image']
         description = data ['description']
         price = data ['price']
-        available = data ['available']
-        product = Product.objects.create(name=name, slug = slug, description = description, price = price, available = available )
+        # available = bool(data ['available'])
+        available = False
+        if available == False:
+            msg = sweetify.success(request, 'You did it', text="message won't be displayed to customers", persistent='Hell yeah')
+            context = {'msg' : msg}
+            # return HttpResponse (template.render(context, request))
+        # print (available)
+        product, created  = Product.objects.get_or_create(name=name,category_name_id=category_id,slug = slug, defaults = {'description': description, 'price' : price, 'available': available})
+        if created == False:
+            msg = sweetify.success(request, 'You did it', text='Duplicate product message', persistent='Hell yeah')
+            context = {'msg': msg}
+            return HttpResponse (template.render(context, request))        
         return HttpResponseRedirect (reverse('product'))
-    return HttpResponse (template.render({}, request))
+    context = {
+        'categories':Category.objects.all()
+    }
+    return HttpResponse (template.render(context, request))
 
 

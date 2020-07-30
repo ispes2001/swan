@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'swan.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'swan',
+        'NAME': 'swan_new',
         'USER': 'postgres',
         'PASSWORD' : 'popular123',
         'HOST': 'localhost',

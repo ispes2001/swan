@@ -45,7 +45,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="{% static 'static-admin/vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'static-admin/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> 
   <!-- Menu Toggle Script -->
   <script>
     $("#menu-toggle").click(function(e) {
@@ -53,6 +53,7 @@
       $("#wrapper").toggleClass("toggled");
     });
   </script>
+  
         {% load sweetify %}
         {% sweetify %}
 
