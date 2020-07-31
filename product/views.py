@@ -72,7 +72,8 @@ def update_product(request, id):
     categories = Category.objects.all()
     if request.method == "POST":
         data = request.POST
-        # product.category_id = data ['category']
+        print (data)
+        product.category_id = data ['category']
         product.name = data ['name']
         product.slug = data ['slug']
         # image = data ['image']
@@ -83,9 +84,15 @@ def update_product(request, id):
         product.save()
         sweetify.success(request, 'You did it', text='Product Successfully Updated', persistent='Hell yeah')        
         return HttpResponseRedirect (reverse('product'))
-    context = {'product': product, 'update': True}
+    context = {'product': product, 'update': True, 'categories': categories}
     return HttpResponse (template.render(context, request))
 
+def delete_product (request, id):
+    template = loader.get_template('product/product.html')
+    product = Product.objects.get(id=id)
+    product.delete()
+    sweetify.success(request, 'You did it', text='Product deleted successfully', persistent='Hell yeah')        
+    return HttpResponseRedirect (reverse('product'))
 
 def category_update(request, id):
     template = loader.get_template('category/category_add.html')
@@ -103,11 +110,19 @@ def category_update(request, id):
 
 
 def category_delete(request, id):
-    pass
+    template = loader.get_template('category/category_display.html')
+    category = Category.objects.get(id=id)
+    category.delete()
+    sweetify.success(request, 'You did it', text='Category deleted successfully', persistent='Hell yeah')        
+    return HttpResponseRedirect (reverse('category'))
+
 
 def category_group(request, id):
     template = loader.get_template('category/category_group.html')
     group = Category.objects.get(id=id)
     context = group.products.all()
-    title = group.products.all()[id].category
+    try:
+        title = group.products.all()[id].category
+    except:
+        title = 'No products available'
     return HttpResponse (template.render({'group':context, 'title': title}, request))

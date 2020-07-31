@@ -26,7 +26,7 @@
                         <td><a href="{%url 'group_category' i.id %}"> {{i.name}} </a> </td>
                         <td>{{i.slug}}</td>
                         <td> <a href="{%url 'update_category' i.id %}" type="button" class="btn btn-outline-secondary" name = "update_category">Update</button> </a>
-                        <td> <a type="button" class="btn btn-outline-danger" name = "product_delete">Delete</button> </a>
+                        <td> <a href="{% url 'delete_category' i.id %}" type="button" class="btn btn-outline-danger" name = "product_delete">Delete</button> </a>
               
                     </tr>
                   {% endfor %}
