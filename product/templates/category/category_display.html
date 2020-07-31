@@ -25,7 +25,9 @@
                         <th scope="row">{{ forloop.counter }}</th>
                         <td>{{i.name}}</td>
                         <td>{{i.slug}}</td>
-                        <td>@mdo</td>
+                        <td> <a href="{%url 'update_category' i.id %}" type="button" class="btn btn-outline-secondary" name = "update_category">Update</button> </a>
+                        <td> <a type="button" class="btn btn-outline-danger" name = "product_delete">Delete</button> </a>
+              
                     </tr>
                   {% endfor %}
               

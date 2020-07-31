@@ -5,12 +5,16 @@
     <form method="POST">
         {% csrf_token %}
         <div class="card">
+            {%if update %}
+            <div class="card-header">
+                Update Category
+            </div>
+            {%else %}
             <div class="card-header">
                 Add new category
             </div>
+            {%endif %}
             <div class="card-body">
-
-
                 <!-- <div class="row">
                     {% if messages %}
                     {% for message in messages %}
@@ -31,21 +35,18 @@
 
                 <div class="col-md-6">
                     <label class="label-control">Enter Category Name</label>
-                    <input type="text" class="form-control" name="name" />
+                    <input type="text" class="form-control" value = "{{category.name}}", name="name" />
                 </div>
 
                 <div class="col-md-6">
                     <label class="label-control">Enter Category Slug</label>
-                    <input type="text" class="form-control" name="slug" />
+                    <input type="text" class="form-control" value = "{{category.slug}}"name="slug" />
                 </div>
             </div>
-
-
         </div>
 
         <div class="card-footer">
             <input type="submit" class="btn btn-outline-info ml-4" value="submit">
-
         </div>
 </div>
 
