@@ -104,3 +104,10 @@ def category_update(request, id):
 
 def category_delete(request, id):
     pass
+
+def category_group(request, id):
+    template = loader.get_template('category/category_group.html')
+    group = Category.objects.get(id=id)
+    context = group.products.all()
+    title = group.products.all()[id].category
+    return HttpResponse (template.render({'group':context, 'title': title}, request))

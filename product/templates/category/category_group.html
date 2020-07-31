@@ -1,0 +1,29 @@
+{% extends 'base_admin.html' %}
+
+{% block content %}
+    <h3> Product list of category: {{title}}</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Slug</th>
+          <th scope="col">Price</th>
+          <th scope="col">Created</th>
+          <th scope="col">Updated</th>
+        </tr>
+      </thead>
+      {% for i in group %}
+      <tbody>
+        <tr margin-top:5>
+          <td>{{forloop.counter}}</td>
+          <td>{{i.name}}</td>
+          <td>{{i.slug}}</td>
+          <td>{{i.price}}</td>
+          <td>{{i.created}}</td>
+          <td>{{i.updated}}</td>
+        </tr>
+      </tbody>
+      {% endfor %}
+</table>
+  {% endblock %}
