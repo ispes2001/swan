@@ -1,0 +1,47 @@
+{% extends 'base_admin.html' %}
+
+{% block content %}
+<div class="mt-4 ml-4 mr-4">
+
+    <div class="card">
+        <div class="card-header">
+        Available Categories
+        <a href="{% url 'category_add' %}" class="btn btn-outline-danger ml-4"  > Add new </a>
+        </div>
+        <div class="card-body"> 
+
+            <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Slug</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for i in category %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td><a href="{%url 'group_category' i.id %}"> {{i.name}} </a> </td>
+                        <td>{{i.slug}}</td>
+                        <td> <a href="{%url 'update_category' i.id %}" type="button" class="btn btn-outline-secondary" name = "update_category">Update</button> </a>
+                        <td> <a href="{% url 'delete_category' i.id %}" type="button" class="btn btn-outline-danger" name = "product_delete">Delete</button> </a>
+              
+                    </tr>
+                  {% endfor %}
+              
+                </tbody>
+              </table>
+
+
+
+        </div>
+      </div>
+
+      
+
+  
+</div>
+
+{% endblock %}
