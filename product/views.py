@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from product.models import Product, Category
@@ -77,7 +77,8 @@ def add_product(request):
 
 def update_product(request, id):
     # template = loader.get_template('product/add_product.html')
-    product = Product.objects.get(id=id)
+    # product = Product.objects.get(id=id)
+    product = get_object_or_404(Product, id=id)
     categories = Category.objects.all()
     if request.method == "POST":
         data = request.POST
@@ -100,7 +101,8 @@ def update_product(request, id):
 
 def delete_product (request, id):
     # template = loader.get_template('product/product.html')
-    product = Product.objects.get(id=id)
+    # product = Product.objects.get(id=id)
+    product = get_object_or_404 (Product, id=id)
     product.delete()
     sweetify.success(request, 'You did it', text='Product deleted successfully', persistent='Hell yeah')        
     # return HttpResponseRedirect (reverse('product'))
@@ -127,7 +129,8 @@ def category_update(request, id):
 
 def category_delete(request, id):
     # template = loader.get_template('category/category_display.html')
-    category = Category.objects.get(id=id)
+    # category = Category.objects.get(id=id)
+    category = get_object_or_404(Category, id=id)
     category.delete()
     sweetify.success(request, 'You did it', text='Category deleted successfully', persistent='Hell yeah')        
     # return HttpResponseRedirect (reverse('category'))
@@ -136,7 +139,8 @@ def category_delete(request, id):
 
 def category_group(request, id):
     # template = loader.get_template('category/category_group.html')
-    group = Category.objects.get(id=id)
+    # group = Category.objects.get(id=id)
+    group = get_object_or_404 (Category, id=id)
     context = group.products.all()
     try:
         title = group.products.all()[id].category
