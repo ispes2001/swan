@@ -21,11 +21,11 @@
                     <div class="footer">
                         <h3 class="footer-title">Categories</h3>
                         <ul class="footer-links">
-                            <li><a href="#">Hot deals</a></li>
-                            <li><a href="#">Laptops</a></li>
-                            <li><a href="#">Smartphones</a></li>
-                            <li><a href="#">Cameras</a></li>
-                            <li><a href="#">Accessories</a></li>
+                        {% for i in category %}
+                        {% if forloop.counter <= 5 %}
+                            <li><a href="{%url 'group_category' i.id %}">{{i.name}}</a></li>
+                        {% endif %}
+                        {% endfor %}
                         </ul>
                     </div>
                 </div>

@@ -38,7 +38,7 @@
                             <select class="input-select " style="width: 158px;">
                                 <option value="0">All Categories</option>
                                 {% for i in category %}
-                                <option value="1">{{i.name}}</option>
+                                <option value="i.id">{{i.name}}</option>
                                 {% endfor %}
                              </select>
                             <input class="input" placeholder="Search here">
