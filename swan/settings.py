@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'order',
     'product',
     'sweetify',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -161,3 +162,8 @@ GRAPH_MODELS = {
 }
 
 SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+MEDIA_ROOT= 'media'
+MEDIA_URL = '/media/'

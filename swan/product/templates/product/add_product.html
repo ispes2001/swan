@@ -1,9 +1,12 @@
 {% extends 'base_admin.html' %}
+{% load crispy_forms_tags %}
+
 {% block content %}
 <div class = container-fluid >
-<form method="POST">
+<form method="POST" novalidate>
     {%csrf_token%}
-    <div class="form-group">
+    {{form | crispy}}
+    {% comment %} <div class="form-group">
       <label for="exampleFormControlInput1">Category Name</label>
       <input type="text" class="form-control" id="exampleFormControlInput1" name="name">
     </div>
@@ -26,7 +29,7 @@
     <div class="form-group">
         <label for="exampleFormControlInput1">Available: </label>
         <input type="checkbox" id="vehicle1" name="available" value="Bike">
-    </div>
+    </div> {% endcomment %}
     <button type = 'submit' class="btn btn-primary" id="menu-toggle">Add Product</button>
   </form>
 </div>

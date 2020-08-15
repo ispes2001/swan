@@ -1,4 +1,5 @@
 {% extends 'base_admin.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <div class="mt-4 ml-4 mr-4">
@@ -32,8 +33,8 @@
                         {{ msg }}
                     </div>
                 </div> -->
-
-                <div class="col-md-6">
+                {{form |crispy}}
+                {% comment %} <div class="col-md-6">
                     <label class="label-control">Enter Category Name</label>
                     <input type="text" class="form-control" value = "{{category.name}}", name="name" />
                 </div>
@@ -41,7 +42,7 @@
                 <div class="col-md-6">
                     <label class="label-control">Enter Category Slug</label>
                     <input type="text" class="form-control" value = "{{category.slug}}"name="slug" />
-                </div>
+                </div> {% endcomment %}
             </div>
         </div>
 

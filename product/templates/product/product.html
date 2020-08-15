@@ -28,9 +28,10 @@
             <td>{{i.name}}</td>
             <td>{{i.slug}}</td>
             <td>{{i.price}}</td>
+            <td>{{i.image}}</td>
             <td>{{i.created}}</td>
             <td>{{i.updated}}</td>
-            <td> <a href="{%url 'product_update' i.id %}" type="button" class="btn btn-outline-secondary" name = "product_update">Update</button> </a>
+            <td> <a href="{{i.get_absolute_url}}" type="button" class="btn btn-outline-secondary" name = "product_update">Update</button> </a>
             <td> <a href="{% url 'product_delete' i.id %}" type="button" class="btn btn-outline-danger" name = "product_delete">Delete</button> </a>
           </tr>
         </tbody>

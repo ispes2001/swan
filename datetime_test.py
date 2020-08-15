@@ -1,11 +1,24 @@
-import datetime
-from datetime import date
-def differ_days(date1, date2):
+# import datetime
 
-    a = date1
-    b = date2
-    return (a-b)
-print()
-print(differ_days((date(2016,10,12)), date(2015,12,10)))
-print(differ_days((date(2016,3,23)), date(2017,12,10)))
-print()
+# present = datetime.datetime.now()
+# offerenddate = datetime.datetime(2020, 11, 25, 8, 0, 0)
+# countdown = offerenddate - present
+# print(countdown.seconds)
+
+
+class A:
+    def process(self):
+        print('A process()')
+
+
+class B:
+    pass
+
+
+class C(A, B):
+    pass
+
+
+# obj = C()  
+# obj.process()    
+print(C.mro())   # print MRO for class C

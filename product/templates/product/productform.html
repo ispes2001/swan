@@ -1,0 +1,22 @@
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method='POST' novalidate>
+        {% csrf_token %}
+        <div class=row>
+        {{form.category | as_crispy_field}}
+    </div>
+    <div class=row>
+        {{form | crispy}}
+        </div>
+    <input type='Submit'>
+</form>
+</body>
+</html>
