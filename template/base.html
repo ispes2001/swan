@@ -1,4 +1,5 @@
 {% load static %}
+{% load django_bootstrap_breadcrumbs %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,6 +61,12 @@
 		<!-- /container -->
 	</nav>
 	<!-- /NAVIGATION -->
+{% block breadcrumbs %}
+    {% clear_breadcrumbs %}
+    {% breadcrumb "Home" "/" %}
+    {% breadcrumb "Users and groups" "users_and_groups_index" %}
+{% endblock %}
+
 	{% block content %}
 	<!-- SECTION -->
 	<div class="section">
@@ -126,7 +133,7 @@
 									{% for y in product %}
 									<div class="product">
 										<div class="product-img">
-											<img src="{% static 'img/product01.png' %}" alt="">
+											<img width="50px" height="200px" {% if y.image %} src="{{y.image.url}}" {% else %} alt="no Image" {% endif %}>
 											<div class="product-label">
 												<span class="sale">-30%</span>
 												<span class="new">NEW</span>
@@ -135,8 +142,8 @@
 										<div class="product-body">
 											<p class="product-category">{{y.category}}</p>
 											<h3 class="product-name"><a href="">{{y.name}}</a></h3>
-											<h4 class="product-price">$9.99<del
-													class="product-old-price">${{y.price}}</del></h4>
+											<h4 class="product-price">${{y.price}}<del
+													class="product-old-price"></del></h4>
 											<div class="product-rating">
 												<i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>

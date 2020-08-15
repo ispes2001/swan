@@ -30,9 +30,9 @@ class CategoryView(ListView):
         return kwargs
 
 class StoreView(ListView):
-    template_name = 'category/store.html'
-    model = Category
-    context_object_name = 'category'
+    template_name = 'product/store.html'
+    model = Product
+    context_object_name = 'product'
 
     # def get (self, request):
     #     category = Category.objects.all()

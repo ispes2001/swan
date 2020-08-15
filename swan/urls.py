@@ -17,7 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from account.views import index, Administrator
 from product.views import category_group, category_delete, category_update, update_product, delete_product, CategoryView, \
-    ProductView, addproduct, category_add, add_product, StoreView
+    ProductView, addproduct, category_add, add_product, StoreView, ProductAddView
+
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,9 +36,10 @@ urlpatterns = [
     path('category_update/<int:id>', category_update, name = 'update_category'),
     path('category_group/<int:id>', category_group, name = 'group_category'),
     path('category_delete/<int:id>', category_delete, name = 'delete_category'),
-    path('add_product/', add_product, name = 'add_product'),
-    # path('add_product/', ProductAddView.as_view(), name = 'add_product'),
+    # path('add_product/', add_product, name = 'add_product'),
+    path('add_product/', ProductAddView.as_view(), name = 'add_product'),
     path('update_product/<int:id>', update_product, name = 'product_update'),
     path('delete_product/<int:id>', delete_product, name = 'product_delete'),
     path('form', addproduct, name = 'addproduct'),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

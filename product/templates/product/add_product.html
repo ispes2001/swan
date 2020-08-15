@@ -3,7 +3,7 @@
 {% block content %}
 <div class=container-fluid>
   <div> <h3> Product Lists </h3> </div>
-  <form method="POST" novalidate>
+  <form method="POST" novalidate enctype='multipart/form-data'>
     {%csrf_token%}
     <div>
       {% if update %}

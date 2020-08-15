@@ -11,13 +11,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import environ
-from dotenv import load_dotenv
-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-load_dotenv(os.path.join(BASE_DIR, '.env'))
+# load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 # env = environ.Env()
 # reading .env file
@@ -55,6 +52,8 @@ INSTALLED_APPS = [
     'product',
     'sweetify',
     'crispy_forms',
+    'django_bootstrap_breadcrumbs',
+    'view_breadcrumbs',
 ]
 
 MIDDLEWARE = [
@@ -112,7 +111,6 @@ DATABASES = {
 #         'HOST': os.environ['HOST'],
 #         # 'PORT': os.environ['DB_PORT'],
 #     },
-
 # }
 
 # Password validation
