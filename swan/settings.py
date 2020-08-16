@@ -11,9 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import environ
 from dotenv import load_dotenv
-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -54,6 +52,9 @@ INSTALLED_APPS = [
     'order',
     'product',
     'sweetify',
+    'crispy_forms',
+    'django_bootstrap_breadcrumbs',
+    'view_breadcrumbs',
 ]
 
 MIDDLEWARE = [
@@ -90,39 +91,35 @@ WSGI_APPLICATION = 'swan.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'swan_new',
-        'USER': 'postgres',
-        'PASSWORD' : 'popular123',
-        'HOST': 'localhost',
-        'PORT': '',
+
+
+
+if not os.environ.get('DB_NAME'):
+    DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql_psycopg2',
+                'NAME': 'swan_new',
+                'USER': 'postgres',
+                'PASSWORD' : 'popular123',
+                'HOST': 'localhost',
+                'PORT': '',
+            }
+        }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ['DB_NAME'],
+            'USER': os.environ['DB_USER'],
+            'PASSWORD': os.environ['PASSWORD'],
+            'HOST': os.environ['HOST'],
+            # 'PORT': os.environ['DB_PORT'],
+        },
     }
-}
-# print(os.environ)
-# print (os.environ['PASSWORD'])
-# DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': os.environ['NAME'],
-    #     'USER': os.environ['USER'],
-    #     'PASSWORD': os.environ['PASSWORD'],
-    #     # 'HOST': environ.Env.read_env("HOST"),
-    #     # 'PORT': environ.Env.read_env("PORT"),
-    # }
 
 
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': os.environ['DB_NAME'],
-#         'USER': os.environ['DB_USER'],
-#         'PASSWORD': os.environ['PASSWORD'],
-#         'HOST': os.environ['HOST'],
-#         # 'PORT': os.environ['DB_PORT'],
-#     },
 
-# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -141,7 +138,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -172,3 +168,8 @@ GRAPH_MODELS = {
 }
 
 SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+MEDIA_ROOT= 'media'
+MEDIA_URL = '/media/'
