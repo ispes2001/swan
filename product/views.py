@@ -29,10 +29,18 @@ class CategoryView(ListView):
         kwargs ['category'] = self.get_queryset()
         return kwargs
 
-class StoreView(ListView):
-    template_name = 'product/store.html'
-    model = Product
-    context_object_name = 'product'
+# class StoreView(ListView):
+#     template_name = 'product/store.html'
+#     model = Product
+#     context_object_name = 'product'
+
+def storeProduct (request):
+    product = Product.objects.all()
+    total = 0
+    for i in product:
+        total += product['category.name']
+    return render(request, 'product/store.html', {'product': product, 'total': total})
+
 
     # def get (self, request):
     #     category = Category.objects.all()

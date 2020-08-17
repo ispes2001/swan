@@ -8,12 +8,14 @@ import datetime
 # Create your views here.
 def index(request):
     # template = loader.get_template('base.html')
-    # if request.method == "GET":
-    #     data = request.GET
-    #     object = Product.objects.get(name__icontains=data)
-    #     context = {'object': object}
-    #     print (context)
-    #     return render (request, 'search.html', context)
+    if request.method == "POST":
+        data = request.POST
+        try:
+            product = Product.objects.get(name__icontains=data['name'])
+        except:
+            product = "False"
+        context = {'product': product}
+        return render (request, 'search.html', context)
     category = Category.objects.all()
     product = Product.objects.all()
     present = datetime.datetime.now()
