@@ -51,7 +51,7 @@
 				<ul class="main-nav nav navbar-nav">
 					<li class="active"><a href="{% url 'home' %}">Home</a></li>
 					{% for i in category %}
-					<li><a href="{% url 'category' %}">{{i.name}}</a></li>
+					<li><a href="{% url 'store' %}">{{i.name}}</a></li>
 					{% endfor %}
 				</ul>
 				<!-- /NAV -->
@@ -262,7 +262,7 @@
 									{% for y in product %}
 									<div class="product">
 										<div class="product-img">
-											<img src="{% static 'img/product01.png' %}" alt="">
+											<img width="50px" height="200px" {% if y.image %} src="{{y.image.url}}" {% else %} alt="no Image" {% endif %}>
 											<div class="product-label">
 												<span class="sale">-30%</span>
 												<span class="new">NEW</span>

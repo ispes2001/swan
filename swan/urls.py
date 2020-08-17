@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from account.views import index, Administrator
 from product.views import category_group, category_delete, category_update, update_product, delete_product, CategoryView, \
-    ProductView, addproduct, category_add, add_product, StoreView, ProductAddView
+    ProductView, addproduct, category_add, add_product, storeProduct, ProductAddView
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -28,7 +28,8 @@ urlpatterns = [
     path('administrator/', Administrator.as_view(), name = 'administrator'),
     # path('category/', category, name = 'category'),
     path ('category/', CategoryView.as_view(), name = 'category'),
-    path ('store/', StoreView.as_view(), name = 'store'),
+    # path ('store/', StoreView.as_view(), name = 'store'),
+    path ('store/', storeProduct, name = 'store'),
     # path('product/', product, name = 'product'),
     path('product/', ProductView.as_view(), name = 'product'),
     path('category_add/', category_add, name = 'category_add'),

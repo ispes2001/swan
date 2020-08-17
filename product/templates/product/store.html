@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load django_bootstrap_breadcrumbs %}
+{% load django_bootstrap_breadcrumbs%}
 {%block content%}
 <html lang="en">
 <body>
@@ -43,7 +43,7 @@
 									<span></span>
 									{% comment %} "{%url 'group_category' i.id %}" {% endcomment %}
 									{{i.category}}
-									<small>{{forloop.counter}}</small>
+									<small>{{total}}</small>
 								</label>
 							</div>
 						</div>
@@ -58,7 +58,7 @@
 						<div class="price-filter">
 							<div id="price-slider"></div>
 							<div class="input-number price-min">
-								<input id="price-min" type="number" value={{i.price}} >
+								<input id="price-min" type="number" value={{i.price}} name="" >
 								<span class="qty-up">+</span>
 								<span class="qty-down">-</span>
 							</div>
@@ -132,6 +132,7 @@
 					<div class="aside">
 						<h3 class="aside-title">Top selling</h3>
 						{% for i in product %}
+						{% if forloop.counter <= 4 %}
 						<div class="product-widget">
 							<div class="product-img">
 								<img width="50px" {% if i.image %} src="{{i.image.url}}" {% else %} alt="no Image" {% endif %}>							</div>
@@ -141,6 +142,7 @@
 								<h4 class="product-price">${{i.price}} <del class="product-old-price"></del></h4>
 							</div>
 						</div>
+						{% endif %}
 						{% endfor %}
 					</div>
 					<!-- /aside Widget -->
