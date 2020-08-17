@@ -348,17 +348,4 @@ def addproduct(request):
             # return HttpResponseRedirect (reverse('product'))
             return redirect ('product')
         return render (request, 'product/productform.html', {'form': form} )
-<<<<<<< HEAD
     return render (request, 'product/productform.html', context)
-=======
-    return render (request, 'product/productform.html', )
-
-# def search(request):
-#     if request.method == "GET":
-#         data = request.GET
-#         object = Product.objects.get(name__icontains=data)
-#         context = {'object': object}
-#         print (context)
-#         return render (request, 'search.html', context)
-#     return render (request, 'base.html', context)
->>>>>>> source-code3
