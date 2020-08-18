@@ -10,6 +10,8 @@ from django.views.generic import ListView, CreateView
 from .forms import *
 from django.core.files.storage import FileSystemStorage
 
+
+from django.views.generic import TemplateView
 # class CategoryView(View):
 #     def get (self, request):
 #         category = Category.objects.all()
@@ -34,12 +36,24 @@ class CategoryView(ListView):
 #     model = Product
 #     context_object_name = 'product'
 
-def storeProduct (request):
-    product = Product.objects.all()
-    total = 0
-    for i in product:
-        total += product['category.name']
-    return render(request, 'product/store.html', {'product': product, 'total': total})
+class storeProduct (TemplateView):
+    template_name = 'product/store.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs.setdefault('view', self)
+        if self.extra_context is not None:
+            kwargs.update(self.extra_context)
+        params = self.request.GET
+        category = Category.objects.get(id=params['category_id'])
+        filtered_products = category.products.all()
+        kwargs['product']=filtered_products
+       
+        return kwargs
+    # product = Product.objects.all()
+    # total = 0
+    # for i in product:
+    #     total += product['category.name']
+    # return render(request, 'product/store.html', {'product': product, 'total': total})
 
 
     # def get (self, request):

@@ -16,23 +16,13 @@
             </div>
             {%endif %}
             <div class="card-body">
-                <!-- <div class="row">
-                    {% if messages %}
-                    {% for message in messages %}
-                    <div class="alert alert-danger" role="alert">
-                        {{ message }}
-                    </div>
-                    {% endfor %}
-                    {% endif %}
-                    {{msg}}
-                </div> -->
-<!-- 
+             <form action="{{request.path}}">
 
-                <div class="row">
-                    <div class="alert alert-danger" role="alert">
-                        {{ msg }}
-                    </div>
-                </div> -->
+                {{form |crispy }}
+
+                <input type="submit" class="btn btn-outline-primary" value="Submit">
+             </form>
+                </div> 
                 {% comment %} <div class="col-md-6">
                     <label class="label-control">Enter Category Name</label>
                     <input type="text" class="form-control" value = "{{category.name}}", name="name" />

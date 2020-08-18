@@ -34,7 +34,7 @@ class Product(models.Model):
         index_together = (('id', 'slug'),)
 
         
-    def __str__(self):
+    def get_absolute_url (self):
         return reverse_lazy ('product_update', args = [self.id])
 
 # class ProductImage (models.Model):
