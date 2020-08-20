@@ -7,6 +7,7 @@ class ProductAdd(forms.Form):
     category = forms.ModelChoiceField(Category.objects.all(), empty_label="Choose a Category")
     name = forms.CharField(max_length=200)
     slug = forms.SlugField(max_length=200)
+    brand = forms.CharField(max_length=200)
     description = forms.CharField(required=False)
     price = forms.DecimalField()
     available = forms.BooleanField(required=True)

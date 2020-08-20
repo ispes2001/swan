@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="mt-4 ml-4 mr-4">
-    <form method="POST">
+<form method="POST" novalidate enctype='multipart/form-data'>
         {% csrf_token %}
         <div class="card">
             {%if update %}
@@ -16,9 +16,8 @@
             </div>
             {%endif %}
             <div class="card-body">
-             <form action="{{request.path}}">
 
-                {{form |crispy }}
+                {{form | crispy }}
 
                 <input type="submit" class="btn btn-outline-primary" value="Submit">
              </form>

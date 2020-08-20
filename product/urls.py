@@ -3,6 +3,8 @@ from product.views import category_group, category_delete, category_update, upda
     ProductView, addproduct, category_add, add_product, storeProduct, ProductAddView
 from django.conf.urls.static import static
 
+app_name='product'
+
 urlpatterns = [
     path ('category/', CategoryView.as_view(), name = 'category'),
     path ('store/', storeProduct.as_view(), name = 'store'),
@@ -14,5 +16,4 @@ urlpatterns = [
     path('add_product/', ProductAddView.as_view(), name = 'add_product'),
     path('update_product/<int:id>', update_product, name = 'product_update'),
     path('delete_product/<int:id>', delete_product, name = 'product_delete'),
-    path('form', addproduct, name = 'addproduct'),
 ]

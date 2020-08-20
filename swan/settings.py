@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'account',
     'order',
+    'home',
     'product',
     'sweetify',
     'crispy_forms',

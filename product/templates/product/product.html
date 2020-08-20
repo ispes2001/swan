@@ -5,7 +5,7 @@
 <div class='container-fluid'>
   <h3> Product Lists </h3>
   <div class="card">
-    <h5 class="card-header"> <a href='{% url "add_product"%}' type='button' class="btn btn-primary" id="menu-toggle">Add
+    <h5 class="card-header"> <a href='{% url "product:add_product"%}' type='button' class="btn btn-primary" id="menu-toggle">Add
         Product </a> </h5>
     <div class="card-body">
       <table class="table table-sm">
@@ -33,7 +33,7 @@
             <td>{{i.created}}</td>
             <td>{{i.updated}}</td>
             <td> <a href="{{i.get_absolute_url}}" type="button" class="btn btn-outline-secondary" name = "product_update">Update</button> </a>
-            <td> <a href="{% url 'product_delete' i.id %}" type="button" class="btn btn-outline-danger" name = "product_delete">Delete</button> </a>
+            <td> <a href="{% url 'product:product_delete' i.id %}" type="button" class="btn btn-outline-danger" name = "product_delete">Delete</button> </a>
           </tr>
         </tbody>
         {% endfor %}

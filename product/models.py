@@ -15,10 +15,11 @@ class Category(models.Model):
         return self.name
     
     def get_absolute_url (self):
-        return reverse_lazy ('update_category', args=[self.id])
+        return reverse_lazy ('product:update_category', args=[self.id])
     
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE,null=True)
+    brand = models.CharField(max_length=200, db_index=True, null=True)
     name = models.CharField(max_length=200, db_index=True, unique=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
     image = models.ImageField(upload_to="image")
@@ -34,5 +35,5 @@ class Product(models.Model):
 
         
     def get_absolute_url (self):
-        return reverse_lazy ('product_update', args = [self.id])
+        return reverse_lazy ('product:product_update', args = [self.id])
 

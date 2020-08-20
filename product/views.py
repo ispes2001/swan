@@ -36,8 +36,14 @@ class storeProduct (TemplateView):
         params = self.request.GET
         category = Category.objects.get(id=params['category_id'])
         filtered_products = category.products.all()
-        kwargs['product']=filtered_products       
+        kwargs['product']=filtered_products     
         return kwargs
+
+def filter_price(request, price):
+    return render (request, 'pricefilter.html', context)
+
+
+
 
 def category_add(request):
     form = AddCategoryForm()
@@ -61,7 +67,7 @@ class ProductView (ListView):
 class ProductAddView (CreateView):
     template_name = 'product/add_product.html'
     form_class = AddProductForm
-    success_url = reverse_lazy ('product')
+    success_url = reverse_lazy ('product:product')
 
 def add_product(request):
     form = AddProductForm()
@@ -72,7 +78,7 @@ def add_product(request):
             image = Product.objects.filter(image)         
             form.save()
             sweetify.success(request, 'You did it', text='Product Successfully added', persistent='Hell yeah')        
-            return redirect ('product')
+            return redirect ('product:product')
         context = {'form': form}
         return render (request, 'product/add_product.html', context)
     return render (request, 'product/add_product.html', context)

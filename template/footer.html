@@ -23,7 +23,7 @@
                         <ul class="footer-links">
                         {% for i in category %}
                         {% if forloop.counter <= 5 %}
-                            <li><a href="{%url 'group_category' i.id %}">{{i.name}}</a></li>
+                            <li><a href="{%url 'product:group_category' i.id %}">{{i.name}}</a></li>
                         {% endif %}
                         {% endfor %}
                         </ul>

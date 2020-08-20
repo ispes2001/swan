@@ -6,7 +6,7 @@
     <div class="card">
         <div class="card-header">
         Available Categories
-        <a href="{% url 'category_add' %}" class="btn btn-outline-danger ml-4"  > Add new {{extra}} </a>
+        <a href="{% url 'product:category_add' %}" class="btn btn-outline-danger ml-4"  > Add new {{extra}} </a>
         </div>
         <div class="card-body"> 
 
@@ -23,10 +23,10 @@
                     {% for i in category %}
                     <tr>
                         <th scope="row">{{ forloop.counter }}</th>
-                        <td><a href="{%url 'group_category' i.id %}"> {{i.name}} </a> </td>
+                        <td><a href="{%url 'product:group_category' i.id %}"> {{i.name}} </a> </td>
                         <td>{{i.slug}}</td>
                         <td> <a href="{{i.get_absolute_url}}" type="button" class="btn btn-outline-secondary" name = "update_category">Update</button> </a>
-                        <td> <a href="{% url 'delete_category' i.id %}" type="button" class="btn btn-outline-danger" name = "product_delete">Delete</button> </a>
+                        <td> <a href="{% url 'product:delete_category' i.id %}" type="button" class="btn btn-outline-danger" name = "product_delete">Delete</button> </a>
               
                     </tr>
                   {% endfor %}
