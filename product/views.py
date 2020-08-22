@@ -34,15 +34,30 @@ class storeProduct (TemplateView):
         if self.extra_context is not None:
             kwargs.update(self.extra_context)
         params = self.request.GET
+        filter_price1 = self.request.GET.get('min_price')
+        filter_price2 = self.request.GET.get('max_price')
+        if filter_price1 =='':
+            filter_price1=0
+        if filter_price2=='':
+            my_products=Product.objects.filter(price__range(filter_price1,filter_price2['max_price']))
+        my_products = Product.objects.filter(price__range=(filter_price1,filter_price2))
         category = Category.objects.get(id=params['category_id'])
         filtered_products = category.products.all()
-        kwargs['product']=filtered_products     
+        kwargs['product'], kwargs ['filter']=filtered_products, my_products     
         return kwargs
 
-def filter_price(request, price):
-    return render (request, 'pricefilter.html', context)
-
-
+# def filter_price(request): 
+#     if 'min_price' in request.GET:
+        # filter_price1 = request.GET.get('min_price')
+        # filter_price2 = request.GET.get('max_price')
+        # if filter_price1 =='':
+        #     filter_price1=0
+        # if filter_price2=='':
+        #     filter_price2=Product.objects.all().aggregate(Max('price'))
+        #     my_products=Product.objects.filter(price__range(filter_price1,filter_price2['max_price']))
+#         my_products = Product.objects.filter(price__range=(filter_price1,filter_price2))
+#         context = { "products":my_products}
+#     return render(request,"pricefilter.html",context)
 
 
 def category_add(request):
