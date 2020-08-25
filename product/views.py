@@ -34,16 +34,18 @@ class storeProduct (TemplateView):
         if self.extra_context is not None:
             kwargs.update(self.extra_context)
         params = self.request.GET
-        filter_price1 = self.request.GET.get('min_price')
-        filter_price2 = self.request.GET.get('max_price')
-        if filter_price1 =='':
-            filter_price1=0
-        if filter_price2=='':
-            my_products=Product.objects.filter(price__range(filter_price1,filter_price2['max_price']))
-        my_products = Product.objects.filter(price__range=(filter_price1,filter_price2))
+        # if request.method =='POST':
+        #     filter_price1 = self.request.GET.get('min_price')
+        #     filter_price2 = self.request.GET.get('max_price')
+        #     print (filter_price2)
+        #     if filter_price1 =='':
+        #         filter_price1=0
+        # if filter_price2=='':
+        #     my_products=Product.objects.filter(price__range(filter_price1,filter_price2['max_price']))
+        # my_products = Product.objects.filter(price__range=(filter_price1,filter_price2))
         category = Category.objects.get(id=params['category_id'])
         filtered_products = category.products.all()
-        kwargs['product'], kwargs ['filter']=filtered_products, my_products     
+        kwargs['product']=filtered_products
         return kwargs
 
 # def filter_price(request): 
@@ -178,3 +180,10 @@ def addproduct(request):
             return redirect ('product')
         return render (request, 'product/productform.html', {'form': form} )
     return render (request, 'product/productform.html', context)
+
+
+def detail_product(request, id):
+    context = {'product':Product.objects.filter(id=id), 'detail_prod': Product.objects.all()}
+    if request.method=='POST':
+        return render (request, 'product/cart.html')
+    return render (request, 'product/detail.html', context)
